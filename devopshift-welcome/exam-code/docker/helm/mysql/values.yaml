@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: mysql
+  tag: "5.7"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3306
+
+mysql:
+  rootPassword: "123456"
+  database: crypto_db
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

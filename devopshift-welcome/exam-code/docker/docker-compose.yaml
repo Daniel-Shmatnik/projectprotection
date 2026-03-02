@@ -1,0 +1,35 @@
+services:
+  web:
+    build:
+      context: ./fe
+    ports:
+      - "5002:5002"
+    depends_on:
+      - backend-service
+    networks:
+      - app-network
+
+  backend-service:
+    build:
+      context: ./be
+    ports:
+      - "5001:5001"
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_PASSWORD: 123456
+    depends_on:
+      - mysqldb
+    networks:
+      - app-network
+
+  mysqldb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: crypto_db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

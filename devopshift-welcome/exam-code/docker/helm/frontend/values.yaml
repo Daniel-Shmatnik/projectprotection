@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: danielshmatnik/frontend
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 5002
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
